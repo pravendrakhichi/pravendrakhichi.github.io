@@ -5492,5 +5492,8 @@ body:after {
         flex-shrink: 0;
     }
 }
+image{
+	width=100%;
+}
 
 </style>
