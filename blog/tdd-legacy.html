@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Test-Driven Development in Legacy Codebases – Pravendra Singh Khichi</title>
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<header>
+    <div class="container nav-container">
+        <a href="../index.html" class="logo">PSK</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="index.html">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="article-header">
+    <h1>Test-Driven Development in Legacy Codebases</h1>
+    <p class="article-meta">April 2025 • 6 min read</p>
+</section>
+
+<article class="article-body">
+    <p>
+        Introducing TDD into a decade-old monolith that lacked unit tests felt
+        impossible: 200 k lines of Java code, no dependency injection, and a
+        database schema that changed under our feet. Here’s how we rolled it out
+        without halting feature delivery.
+    </p>
+
+    <h2>Step 1 – Identify Seams</h2>
+    <p>
+        Using Michael Feathers’ “seam” model, we wrapped external DB calls behind
+        interfaces and used Mockito + H2 for in-memory testing.
+    </p>
+
+    <h2>Step 2 – Golden Master Tests</h2>
+    <pre><code>
+// Capture current behaviour before refactor
+@Test
+void shouldPreserveLegacyCalculation() {
+    String output = legacyService.calculateCharges(input);
+    Approvals.verify(output);
+}
+    </code></pre>
+
+    <h2>Step 3 – Incremental Adoption</h2>
+    <ul>
+        <li>Every new class is TDD-first</li>
+        <li>Refactor only modules currently under active feature work</li>
+        <li>Code coverage gate raised from 0 % to 60 % within 6 months</li>
+    </ul>
+
+    <p>
+        Within a quarter we cut production defects in touched modules by 40 % and
+        reduced mean-time-to-repair from days to hours.
+    </p>
+
+    <a href="index.html" class="back-link">← Back to all articles</a>
+</article>
+</body>
+<script>
+    /* ----- CONFIGURATION ----- */
+    const articleDate = new Date('2025-06-01T00:00:00'); // change per article
+    const startDate   = new Date('2022-01-01');          // slider min
+    const endDate     = new Date('2022-12-01');          // slider max
+
+    const slider      = document.getElementById('dateSlider');
+    const label       = document.getElementById('sliderLabel');
+    const totalSteps  = 11; // 0-11 for 12 months
+
+    /* Map slider index -> Date */
+    function sliderIndexToDate(idx){
+        const month = startDate.getMonth() + idx;
+        return new Date(startDate.getFullYear(), month, 1);
+    }
+
+    /* Update label */
+    function updateLabel(idx){
+        const d = sliderIndexToDate(idx);
+        label.textContent = d.toLocaleString('default',{month:'short',year:'numeric'});
+    }
+    updateLabel(0);
+
+    /* Scroll to closest heading */
+    function scrollToDate(idx){
+        const targetDate = sliderIndexToDate(idx);
+        const headings   = document.querySelectorAll('.article-body h2, .article-body h3');
+        let closest = headings[0];
+        let minDiff = Infinity;
+
+        headings.forEach(h=>{
+            const d = new Date(h.dataset.date || articleDate);
+            const diff = Math.abs(d - targetDate);
+            if(diff < minDiff){
+                minDiff = diff;
+                closest = h;
+            }
+        });
+
+        closest.scrollIntoView({behavior:'smooth',block:'start'});
+        closest.classList.add('scroll-target');
+        setTimeout(()=>closest.classList.remove('scroll-target'),800);
+    }
+
+    /* Events */
+    slider.addEventListener('input', e=>{
+        const idx = parseInt(e.target.value,10);
+        updateLabel(idx);
+        scrollToDate(idx);
+    });
+</script>
+</html>

@@ -81,7 +81,7 @@ a:hover {
   box-shadow: 0 0 10px;
 }
 
-#cards : hover {
+#cards :hover {
   z-index: 1;
   box-shadow: 0 0 2px;
   margin: 4px;

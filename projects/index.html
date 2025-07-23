@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Projects – Pravendra Singh Khichi</title>
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<header>
+    <div class="container nav-container">
+        <a href="../index.html" class="logo">PSK</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="index.html">Projects</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Slider bar (sticky) -->
+<section class="time-slider-bar">
+    <div class="container">
+        <label for="projectSlider">Jump to month:</label>
+        <input type="range" id="projectSlider" min="0" max="11" value="0" step="1">
+        <span id="sliderLabel">Jan 2024</span>
+    </div>
+</section>
+<br/>
+<br/>
+<!-- Timeline cards -->
+<section id="projects-timeline" class="container">
+    <div class="projects-grid">
+        <!-- Card 1 -->
+        <article class="project-card scroll-target" data-date="2024-01-15">
+            <img src="../assets/bod-thumb.png" alt="BOD Refresh Master"/>
+            <h3>BOD Refresh Master</h3>
+            <p>Automated daily banking operations, cutting manual overhead by 90 %.</p>
+            <a href="bod-refresh/index.html" class="btn-primary">Read Case Study</a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="project-card scroll-target" data-date="2024-05-10">
+            <img src="../assets/api-thumb.png" alt="API Aggregator"/>
+            <h3>API Aggregator</h3>
+            <p>Middleware layer enabling seamless integrations & format transformation.</p>
+            <a href="api-aggregator/index.html" class="btn-primary">Read Case Study</a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="project-card scroll-target" data-date="2024-09-03">
+            <img src="../assets/charge-thumb.png" alt="Charge Wise Master"/>
+            <h3>Charge Wise Master API</h3>
+            <p>Compliance-driven microservice for automated charge calculation.</p>
+            <a href="charge-master/index.html" class="btn-primary">Read Case Study</a>
+        </article>
+    </div>
+</section>
+
+<!-- Same JS as before -->
+<script>
+    const slider   = document.getElementById('projectSlider');
+    const label    = document.getElementById('sliderLabel');
+    const cards    = document.querySelectorAll('.project-card[data-date]');
+    const startDate = new Date('2024-01-01');
+
+    function idxToDate(idx){
+        return new Date(startDate.getFullYear(), startDate.getMonth() + idx, 1);
+    }
+    function updateLabel(idx){
+        label.textContent = idxToDate(idx).toLocaleString('default',{month:'short', year:'numeric'});
+    }
+    updateLabel(0);
+
+    function scrollToClosest(idx){
+        const targetDate = idxToDate(idx);
+        let closest = cards[0], minDiff = Infinity;
+        cards.forEach(card=>{
+            const cardDate = new Date(card.dataset.date);
+            const diff = Math.abs(cardDate - targetDate);
+            if(diff < minDiff){ minDiff = diff; closest = card; }
+        });
+        closest.scrollIntoView({behavior:'smooth', block:'center'});
+        closest.classList.add('scroll-target');
+        setTimeout(()=>closest.classList.remove('scroll-target'), 800);
+    }
+    slider.addEventListener('input', e=>{
+        const idx = parseInt(e.target.value, 10);
+        updateLabel(idx);
+        scrollToClosest(idx);
+    });
+</script>
+</body>
+</html>

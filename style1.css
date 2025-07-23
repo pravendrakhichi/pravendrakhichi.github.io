@@ -117,7 +117,7 @@ body:before {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-    background-image: linear-gradient(90deg, rgba(38, 38, 38, 0.471) 100%, transparent 100%), url('image/1.JPG');
+    background-image: linear-gradient(90deg, rgba(38, 38, 38, 0.471) 100%, transparent 100%), url('assets/image/1.JPG');
     background-position: 0% 0%, right;
     background-repeat: repeat, repeat;
     background-size: cover, cover;
@@ -2682,7 +2682,7 @@ hr:before {
 
 @media (max-width: 980px) {
     body:before {
-        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 100%, transparent 100%), url('image/1.JPG');
+        background-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 100%, transparent 100%), url('assets/image/1.JPG');
         position: relative;
         width: 100%;
         height: 45vh;

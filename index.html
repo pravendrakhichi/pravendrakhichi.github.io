@@ -18,9 +18,9 @@
         <nav id="navbar">
             <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="projects/index.html">Projects</a></li>
+                <li><a href="blog/index.html">Blog</a></li>
+                <li><a href="contact/index.html">Contact</a></li>
             </ul>
         </nav>
         <button class="hamburger" aria-label="Toggle navigation">
@@ -31,10 +31,21 @@
 
 <!-- ================= HERO ================= -->
 <section id="hero">
-    <div class="container hero-content">
-        <h1>Hi, I'm <span class="accent">Pravendra</span></h1>
-        <p>Senior Software Engineer crafting scalable financial systems with Java, Spring Boot & Microservices.</p>
-        <a href="#contact" class="btn-primary">Get In Touch</a>
+    <div class="container hero-content hero-with-stats">
+        <!-- LEFT: existing headline & tagline -->
+        <div class="hero-text">
+            <h1>Hi, I'm <span class="accent">Pravendra</span></h1>
+            <p>Senior Software Engineer crafting scalable financial systems with Java, Spring Boot & Microservices.</p>
+            <a href="#contact" class="btn-primary">Get In Touch</a>
+        </div>
+
+        <!-- RIGHT: LeetCode stats -->
+        <div class="hero-stats">
+            <img
+                    src="https://leetcode-stats.vercel.app/api?username=pravendrakhichi&theme=Light"
+                    alt="Pravendra's LeetCode Stats"
+            />
+        </div>
     </div>
 </section>
 
@@ -56,8 +67,7 @@
                 <li>Docker & Cloud</li>
             </ul>
             <br/>
-            <br/>
-            <button href="assets/resume/pravendrakhichi.pdf" class="btn-primary" download="PravendraKhichi.pdf">Download My Resume <i class="fas fa-download"></i></button>
+            <a href="resume/PravendraKhichi.pdf" class="primary" download="PravendraKhichi.pdf">Download My Resume <i class="fas fa-download"></i></a>
         </div>
         <img src="assets/img/profile.jpg" alt="Pravendra" class="profile-img"/>
     </div>
@@ -74,6 +84,7 @@
                 <h3>BOD Refresh Master</h3>
                 <p>Automated daily banking operations, cutting manual overhead by 90 %.</p>
                 <div class="tags"><span>Java</span><span>Spring Batch</span><span>Oracle</span></div>
+                <a href="projects/bod-refresh/index.html" target="_blank" class="link">More Info <i class="fab fa-info-circle"></i></a>
                 <a href="https://github.com/pravendrakhichi/bod-refresh" target="_blank" class="link">Code <i class="fab fa-github"></i></a>
             </article>
 
@@ -83,6 +94,7 @@
                 <h3>API Aggregator</h3>
                 <p>Middleware layer enabling seamless integrations & format transformation.</p>
                 <div class="tags"><span>Spring Boot</span><span>Redis</span><span>Docker</span></div>
+                <a href="projects/api-aggregator/index.html" target="_blank" class="link">More Info <i class="fab fa-info-circle"></i></a>
                 <a href="https://github.com/pravendrakhichi/api-aggregator" target="_blank" class="link">Code <i class="fab fa-github"></i></a>
             </article>
 
@@ -92,9 +104,12 @@
                 <h3>Charge Wise Master API</h3>
                 <p>Compliance-driven microservice for automated charge calculation.</p>
                 <div class="tags"><span>Java</span><span>TDD</span><span>JUnit5</span></div>
+                <a href="projects/charge-master/index.html" target="_blank" class="link">More Info <i class="fab fa-info-circle"></i></a>
                 <a href="https://github.com/pravendrakhichi/charge-master" target="_blank" class="link">Code <i class="fab fa-github"></i></a>
             </article>
+            <a href="projects/index.html" class="primary" style="width: 100%;">View All Projects →</a>
         </div>
+
     </div>
 </section>
 
@@ -104,16 +119,20 @@
         <h2>Latest Articles</h2>
         <div class="blog-list">
             <!-- Replace # with your Medium / Dev.to links -->
-            <a href="#" class="blog-card">
+            <!-- inside #blog section -->
+
+            <a href="blog/scaling-spring-batch.html" class="blog-card">
                 <h3>Scaling Batch Processing with Spring Batch</h3>
                 <p>How we reduced 2-hour payment jobs to 10 minutes…</p>
                 <small>June 2025</small>
             </a>
-            <a href="#" class="blog-card">
+
+            <a href="blog/tdd-legacy.html" class="blog-card">
                 <h3>Test-Driven Development in Legacy Codebases</h3>
                 <p>Introducing TDD without breaking everything…</p>
                 <small>April 2025</small>
             </a>
+            <a href="blog/index.html" class="primary">View All Article →</a>
         </div>
     </div>
 </section>

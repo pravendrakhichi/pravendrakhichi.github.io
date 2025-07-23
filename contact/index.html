@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact – Pravendra Singh Khichi</title>
+    <link rel="stylesheet" href="../style.css"/>
+    <!-- Font Awesome (already loaded in index.html) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+<!-- Re-use sticky nav -->
+<header>
+    <div class="container nav-container">
+        <a href="../index.html" class="logo">PSK</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../projects/index.html">Projects</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
+                <li><a href="index.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="article-header" style="padding:100px 20px 60px;">
+    <h1>Let's Build Something Great</h1>
+    <p class="article-meta">Feel free to reach out for collaborations or just a coffee chat.</p>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="container" style="padding:60px 20px;">
+    <div class="grid-2" style="gap:60px; align-items:start;">
+        <!-- Form -->
+        <div>
+            <h2>Send a Message</h2>
+            <form id="contact-form" action="https://formspree.io/f/meozalwj" method="POST">
+                <label>
+                    Email *
+                    <input type="email" name="email" required/>
+                </label>
+
+                <label>
+                    Message *
+                    <textarea name="message" rows="6" required></textarea>
+                </label>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+                <p id="form-status" style="margin-top:10px;"></p>
+            </form>
+        </div>
+
+        <!-- Info -->
+        <div>
+            <h2>Other Ways to Connect</h2>
+            <p><i class="fas fa-map-marker-alt"></i> Noida, Delhi-NCR, India</p>
+            <p><i class="fas fa-clock"></i> Office Hours: <br/>9 AM – 6 PM IST, Mon-Fri</p>
+
+            <div class="socials" style="margin-top:25px; justify-content:flex-start;">
+                <a href="https://linkedin.com/in/pravendrakhichi" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/pravendrakhichi" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://leetcode.com/pravendrakhichi" target="_blank"><i class="fas fa-code"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Pravendra Singh Khichi</p>
+</footer>
+
+<!-- Optional JS – same tiny handler -->
+<script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', e=>{
+        e.preventDefault();
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form)
+        })
+            .then(()=>{ status.textContent = 'Message sent! I’ll reply within 24 h.'; form.reset(); })
+            .catch(()=>{ status.textContent = 'Something went wrong. Please email directly.'; });
+    });
+</script>
+</body>
+</html>

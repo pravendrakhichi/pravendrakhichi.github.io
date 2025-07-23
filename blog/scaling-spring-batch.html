@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Scaling Batch Processing with Spring Batch – Pravendra Singh Khichi</title>
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+<header>
+    <div class="container nav-container">
+        <a href="../index.html" class="logo">PSK</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="index.html">Blog</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="article-header">
+    <h1>Scaling Batch Processing with Spring Batch</h1>
+    <p class="article-meta">June 2025 • 5 min read</p>
+</section>
+
+<article class="article-body">
+    <p>
+        At Nucleus Software we had a nightly payment-reconciliation job that used to
+        run for more than two hours. A single failure required manual re-runs and
+        delayed downstream SLAs. We migrated the monolithic job to a Spring Batch
+        microservice and achieved a 10× runtime improvement (down to ≈10 minutes)
+        while also gaining fault-tolerance and restartability.
+    </p>
+
+    <h2>Key Bottlenecks Identified</h2>
+    <ul>
+        <li>Single-threaded processing of 4 M+ rows</li>
+        <li>Row-by-row DB writes</li>
+        <li>No partitioning strategy</li>
+    </ul>
+
+    <h2>Solution Highlights</h2>
+    <pre><code>
+// Partitioner splits data by date range
+@Bean
+public Partitioner rangePartitioner() {
+    return gridSize -&gt; {
+        Map&lt;String, ExecutionContext&gt; map = new HashMap&lt;&gt;();
+        /* logic omitted for brevity */
+        return map;
+    };
+}
+    </code></pre>
+
+    <p>
+        We used a <strong>remote chunking</strong> step where the master
+        distributes work to workers via Redis queues. Each worker processed
+        ~50 k rows and sent aggregated results back.
+    </p>
+
+    <h2>Results & Takeaways</h2>
+    <ul>
+        <li>Runtime: 120 min → 10 min</li>
+        <li>CPU utilisation: 15 % → 80 % (horizontal scale)</li>
+        <li>Restartability: automatic on step failure</li>
+    </ul>
+
+    <a href="index.html" class="back-link">← Back to all articles</a>
+</article>
+</body>
+<script>
+    /* ----- CONFIGURATION ----- */
+    const articleDate = new Date('2025-06-01T00:00:00'); // change per article
+    const startDate   = new Date('2023-01-01');          // slider min
+    const endDate     = new Date('2023-12-01');          // slider max
+
+    const slider      = document.getElementById('dateSlider');
+    const label       = document.getElementById('sliderLabel');
+    const totalSteps  = 11; // 0-11 for 12 months
+
+    /* Map slider index -> Date */
+    function sliderIndexToDate(idx){
+        const month = startDate.getMonth() + idx;
+        return new Date(startDate.getFullYear(), month, 1);
+    }
+
+    /* Update label */
+    function updateLabel(idx){
+        const d = sliderIndexToDate(idx);
+        label.textContent = d.toLocaleString('default',{month:'short',year:'numeric'});
+    }
+    updateLabel(0);
+
+    /* Scroll to closest heading */
+    function scrollToDate(idx){
+        const targetDate = sliderIndexToDate(idx);
+        const headings   = document.querySelectorAll('.article-body h2, .article-body h3');
+        let closest = headings[0];
+        let minDiff = Infinity;
+
+        headings.forEach(h=>{
+            const d = new Date(h.dataset.date || articleDate);
+            const diff = Math.abs(d - targetDate);
+            if(diff < minDiff){
+                minDiff = diff;
+                closest = h;
+            }
+        });
+
+        closest.scrollIntoView({behavior:'smooth',block:'start'});
+        closest.classList.add('scroll-target');
+        setTimeout(()=>closest.classList.remove('scroll-target'),800);
+    }
+
+    /* Events */
+    slider.addEventListener('input', e=>{
+        const idx = parseInt(e.target.value,10);
+        updateLabel(idx);
+        scrollToDate(idx);
+    });
+</script>
+</html>

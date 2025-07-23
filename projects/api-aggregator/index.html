@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BOD Refresh Master – Case Study</title>
+    <link rel="stylesheet" href="../../style.css"/>
+</head>
+<body>
+<header>
+    <div class="container nav-container">
+        <a href="../../index.html" class="logo">PSK</a>
+        <nav>
+            <ul>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../index.html">Projects</a></li>
+                <li><a href="../../blog/index.html">Blog</a></li>
+                <li><a href="../../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="article-header">
+    <h1>BOD Refresh Master</h1>
+    <p class="article-meta">Jan 2024 • Enterprise Automation</p>
+</section>
+
+<article class="article-body">
+    <img src="../../assets/bod-thumb.png" alt="BOD Refresh Master" style="width:100%; border-radius:8px; margin-bottom:20px"/>
+
+    <h2>Problem</h2>
+    <p>Manual end-of-day reconciliation at ICICI Bank took 2 hours, required 6 FTEs and was error-prone.</p>
+
+    <h2>Solution</h2>
+    <ul>
+        <li>Spring Batch micro-service with partitioning</li>
+        <li>Oracle → Redis cache for hot data</li>
+        <li>Docker & Kubernetes cron jobs</li>
+    </ul>
+
+    <h2>Impact</h2>
+    <ul>
+        <li>Processing time: 120 min → 10 min</li>
+        <li>Manual effort: 6 FTE → 0.5 FTE (monitoring)</li>
+        <li>Zero missed SLAs since go-live</li>
+    </ul>
+
+    <h2>Tech Stack</h2>
+    <p>Java 17, Spring Boot, Spring Batch, Oracle, Redis, Docker, K8s</p>
+
+    <a href="https://github.com/pravendrakhichi/bod-refresh" target="_blank" class="btn-primary">View Code</a>
+    <a href="../index.html" class="back-link">← Back to Timeline</a>
+</article>
+</body>
+</html>
