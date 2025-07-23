@@ -149,7 +149,7 @@ form input, form textarea{
     flex:1 1 400px;
 }
 .hero-stats{
-    flex:0 0 400px;
+    flex:0 0 360px;
 }
 .hero-stats img{
     width:100%;
