@@ -30,8 +30,8 @@
 </header>
 
 <!-- ================= HERO ================= -->
-<section id="hero">
-    <div class="container hero-content hero-with-stats">
+<section id="hero"> <!--style="background-image: url('assets/img/hacker-profile.jpg'); background-no-repeat: no-repeat; background-size: cover; background-position: top;">-->
+    <div class="container hero-content hero-with-stats" >
         <!-- LEFT: existing headline & tagline -->
         <div class="hero-text">
             <h1>Hi, I'm <span class="accent">Pravendra</span></h1>
@@ -141,13 +141,16 @@
 <section id="contact">
     <div class="container">
         <h2>Contact</h2>
-        <p>Have a project in mind or want to collaborate? Let’s talk.</p>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required/>
-            <input type="email" name="email" placeholder="Your Email" required/>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit" class="btn-primary">Send Message</button>
-            <div id="form-status"></div>
+        <p>Have a project in mind or want to collaborate? <b>Let’s talk.</b></p>
+        <form action="https://formspree.io/f/meozalwj" method="POST">
+            <label>Email * <input type="email" name="email" required/>
+            </label>
+
+            <label>Message * <textarea name="message" rows="6" required></textarea>
+            </label>
+
+            <button type="submit" class="btn-primary"><i class="fas fa-envelope"></i> Send Message  </button>
+            <p id="form-status" style="margin-top:10px;color: #1c7430;"></p>
         </form>
 
         <div class="socials">
